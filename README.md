@@ -123,6 +123,48 @@ x
 #> Sentiment:
 ```
 
+## Prompt chaining
+
+``` r
+# Define the mock model interaction function
+model_function <- function(
+    prompt,
+    seconds_delay = 20
+){
+  x <- openai::create_chat_completion(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(
+        "role" = "user",
+        "content" = prompt
+      )
+    )
+  )
+  Sys.sleep(seconds_delay)
+  return(x$choices$message.content)
+}
+
+prompts <- list(
+  "What is the sum of 15 and 27?",
+  "Take the result from the previous step and multiply it by 2.",
+  "Subtract 10 from the result obtained in the previous step.",
+  "Divide the result from the previous step by 2."
+)
+responses <- chain_prompts(prompts, model_function)
+responses
+#> [[1]]
+#> [1] "The sum of 15 and 27 is 42."
+#> 
+#> [[2]]
+#> [1] "The result after multiplying 42 by 2 is 84."
+#> 
+#> [[3]]
+#> [1] "84 - 10 = 74."
+#> 
+#> [[4]]
+#> [1] "74 / 2 = 37"
+```
+
 # Credit
 
 - [fewshot()](R/fewshot.R) is taken directly from

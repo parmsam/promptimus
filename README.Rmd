@@ -80,6 +80,37 @@ x <- fewshot(text = "I am disappointed with this ruling.",
 x
 ```
 
+## Prompt chaining
+
+```{r prompt-chaining, cache=TRUE}
+# Define the mock model interaction function
+model_function <- function(
+    prompt,
+    seconds_delay = 20
+){
+  x <- openai::create_chat_completion(
+    model = "gpt-3.5-turbo",
+    messages = list(
+      list(
+        "role" = "user",
+        "content" = prompt
+      )
+    )
+  )
+  Sys.sleep(seconds_delay)
+  return(x$choices$message.content)
+}
+
+prompts <- list(
+  "What is the sum of 15 and 27?",
+  "Take the result from the previous step and multiply it by 2.",
+  "Subtract 10 from the result obtained in the previous step.",
+  "Divide the result from the previous step by 2."
+)
+responses <- chain_prompts(prompts, model_function)
+responses
+```
+
 # Credit
 
 - [fewshot()](R/fewshot.R) is taken directly from [{promptr}](https://github.com/joeornstein/promptr) originally written by [Joe Ornstein](https://github.com/joeornstein).
