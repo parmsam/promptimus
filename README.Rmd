@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of promptimus is to provide a set of functions to prompt generation for you to supply to LLMs in R.
+The goal of promptimus is to provide a set of R functions to support LLM prompt generation. The package includes simple functions for popular prompt generation frameworks such as RTF (role, task, format), Chain of Thought, Fewshot, and Prompt Chaining.
 
 ## Installation
 
