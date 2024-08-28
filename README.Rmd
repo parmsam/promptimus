@@ -33,7 +33,7 @@ devtools::install_github("parmsam/promptimus")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example-rtf}
 library(promptimus)
 
 # Use RTF (role then task then format) framework to generate a prompt
@@ -43,10 +43,37 @@ x <- rtf(
   format = "table"
 )
 strwrap(x, width = 80)
+```
+
+```{r example-cot}
 # Use Chain of Thought framework to generate a prompt
 x <- chain_of_thought(
   instructions = "How do I improve my sales calls? I've only got a 15% close rate right now, and I think it's because I'm not selling the dream enough."
 )
+strwrap(x, width = 80)
+```
+
+```{r example-fewshot}
+tweets <- tibble::tribble(
+  ~text,         ~case,     ~label,
+  "Thank you Supreme Court! #SCOTUS", "masterpiece", "Positive",
+  "Court rules in favor of Colorado baker!", "masterpiece", "Positive",
+  "Religion used to discriminate. #SCOTUS #MasterpieceCakeshop", "masterpiece", "Negative",
+  "Can't believe this cake case went to #SCOTUS.", "masterpiece",  "Neutral",
+  "Court supports baker refusing gay couple's cake.", "masterpiece",  "Neutral",
+  "#SCOTUS legitimizes religious convictions over #humanrights. #LGBTQRights", "masterpiece", "Negative",
+  "#ClarenceThomas is a waste on #scotus",      "mazars", "Negative",
+  "Justice Ginsburg hospitalized, says #SCOTUS spokesperson.",      "mazars",  "Neutral",
+  "Trump will gloat if Court disappoints us tomorrow.",      "mazars", "Negative",
+  "SCOTUS: Manhattan DA can get Trump's tax returns.",      "mazars", "Positive",
+  "Supreme Court says Trump is not above the law.",      "mazars", "Positive",
+  "SCOTUS rulings send Trump financial records back to lower courts.",      "mazars",  "Neutral"
+)
+x <- fewshot(text = "I am disappointed with this ruling.",
+              instructions = "Decide if the sentiment of this statement is Positive or Negative.",
+              examples = tweets,
+              template = "Statement: {text}\nSentiment: {label}",
+        copy_to_clipboard = F)
 strwrap(x, width = 80)
 ```
 
