@@ -6,3 +6,4 @@ app.R
 .httr-oauth
 .DS_Store
 .quarto
+README_cache
