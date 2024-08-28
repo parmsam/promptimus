@@ -6,8 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of promptimus is to provide a set of functions to support
-prompting to LLMs in R.
+The goal of promptimus is to provide a set of functions to prompt
+generation for you to supply to LLMs in R.
 
 ## Installation
 
@@ -27,14 +27,29 @@ This is a basic example which shows you how to solve a common problem:
 library(promptimus)
 
 # Use RTF (role then task then format) framework to generate a prompt
-rtf("life coach with 30 years of experience in mentoring", "plan to improve my work-life balance", "table")
+x <- rtf(
+  role = "life coach with 30 years of experience in mentoring",   
+  task = "plan to improve my work-life balance", 
+  format = "table"
+)
 #> ✔ Copied to clipboard
-#> Act like a life coach with 30 years of experience in mentoring. Give me a plan to improve my work-life balance in table format.
-
+strwrap(x, width = 80)
+#> [1] "Act like a life coach with 30 years of experience in mentoring. Give me a plan"
+#> [2] "to improve my work-life balance in table format."
 # Use Chain of Thought framework to generate a prompt
-chain_of_thought("How do I improve my sales calls? I've only got a 15% close rate right now, and I think it's because I'm not selling the dream enough.")
+x <- chain_of_thought(
+  instructions = "How do I improve my sales calls? I've only got a 15% close rate right now, and I think it's because I'm not selling the dream enough."
+)
 #> ✔ Copied to clipboard
-#> How do I improve my sales calls? I've only got a 15% close rate right now, and I think it's because I'm not selling the dream enough.. 
-#> 
-#> Let's think through it step-by-step.
+strwrap(x, width = 80)
+#> [1] "How do I improve my sales calls? I've only got a 15% close rate right now, and"
+#> [2] "I think it's because I'm not selling the dream enough.."                       
+#> [3] ""                                                                              
+#> [4] "Let's think through it step-by-step."
 ```
+
+# Credit
+
+- [fewshot()](R/fewshot.R) is taken from
+  [{promptr}](https://github.com/joeornstein/promptr) originally written
+  by [Joe Ornstein](https://github.com/joeornstein).
