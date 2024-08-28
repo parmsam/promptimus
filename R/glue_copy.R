@@ -2,10 +2,30 @@ copy_with_message <- function(
     x,
     message = "Copied to clipboard"
 ){
-  clipr::write_clip(x)
+  clipr::write_clip(x, allow_non_interactive = TRUE)
   cli::cli_alert_success(text = "{message}")
 }
 
+#' Use Glue and Copy String
+#'
+#' @param ...
+#' @param .sep
+#' @param .envir
+#' @param .open
+#' @param .close
+#' @param .na
+#' @param .null
+#' @param .comment
+#' @param .literal
+#' @param .transformer
+#' @param .trim
+#' @param .copy_to_clipboard
+#' @param .copy_message
+#'
+#' @return
+#' @export
+#'
+#' @examples
 glue_copy <- function(
     ...,
     .sep = "",
@@ -16,7 +36,6 @@ glue_copy <- function(
     .null = character(),
     .comment = "#",
     .literal = FALSE,
-    .transformer = identity_transformer,
     .trim = TRUE,
     .copy_to_clipboard = TRUE,
     .copy_message = "Copied to clipboard"
@@ -31,7 +50,6 @@ glue_copy <- function(
     .null = character(),
     .comment = "#",
     .literal = FALSE,
-    .transformer = identity_transformer,
     .trim = TRUE
   )
   if(.copy_to_clipboard){
