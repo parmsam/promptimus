@@ -25,6 +25,8 @@ devtools::install_github("parmsam/promptimus")
 
 This is a basic example which shows you how to solve a common problem:
 
+### Role-Task-Format
+
 ``` r
 library(promptimus)
 
@@ -40,6 +42,8 @@ strwrap(x, width = 80)
 #> [2] "to improve my work-life balance in table format."
 ```
 
+## Chain of thought
+
 ``` r
 # Use Chain of Thought framework to generate a prompt
 x <- chain_of_thought(
@@ -52,6 +56,8 @@ strwrap(x, width = 80)
 #> [3] ""                                                                              
 #> [4] "Let's think through it step-by-step."
 ```
+
+### Fewshot
 
 ``` r
 tweets <- tibble::tribble(
@@ -74,44 +80,51 @@ x <- fewshot(text = "I am disappointed with this ruling.",
               examples = tweets,
               template = "Statement: {text}\nSentiment: {label}",
         copy_to_clipboard = F)
-strwrap(x, width = 80)
-#>  [1] "Decide if the sentiment of this statement is Positive or Negative."             
-#>  [2] ""                                                                               
-#>  [3] "Statement: Thank you Supreme Court! #SCOTUS Sentiment: Positive"                
-#>  [4] ""                                                                               
-#>  [5] "Statement: Court rules in favor of Colorado baker! Sentiment: Positive"         
-#>  [6] ""                                                                               
-#>  [7] "Statement: Religion used to discriminate. #SCOTUS #MasterpieceCakeshop"         
-#>  [8] "Sentiment: Negative"                                                            
-#>  [9] ""                                                                               
-#> [10] "Statement: Can't believe this cake case went to #SCOTUS. Sentiment: Neutral"    
-#> [11] ""                                                                               
-#> [12] "Statement: Court supports baker refusing gay couple's cake. Sentiment: Neutral" 
-#> [13] ""                                                                               
-#> [14] "Statement: #SCOTUS legitimizes religious convictions over #humanrights."        
-#> [15] "#LGBTQRights Sentiment: Negative"                                               
-#> [16] ""                                                                               
-#> [17] "Statement: #ClarenceThomas is a waste on #scotus Sentiment: Negative"           
-#> [18] ""                                                                               
-#> [19] "Statement: Justice Ginsburg hospitalized, says #SCOTUS spokesperson. Sentiment:"
-#> [20] "Neutral"                                                                        
-#> [21] ""                                                                               
-#> [22] "Statement: Trump will gloat if Court disappoints us tomorrow. Sentiment:"       
-#> [23] "Negative"                                                                       
-#> [24] ""                                                                               
-#> [25] "Statement: SCOTUS: Manhattan DA can get Trump's tax returns. Sentiment:"        
-#> [26] "Positive"                                                                       
-#> [27] ""                                                                               
-#> [28] "Statement: Supreme Court says Trump is not above the law. Sentiment: Positive"  
-#> [29] ""                                                                               
-#> [30] "Statement: SCOTUS rulings send Trump financial records back to lower courts."   
-#> [31] "Sentiment: Neutral"                                                             
-#> [32] ""                                                                               
-#> [33] "Statement: I am disappointed with this ruling. Sentiment:"
+x
+#> Decide if the sentiment of this statement is Positive or Negative.
+#> 
+#> Statement: Thank you Supreme Court! #SCOTUS
+#> Sentiment: Positive
+#> 
+#> Statement: Court rules in favor of Colorado baker!
+#> Sentiment: Positive
+#> 
+#> Statement: Religion used to discriminate. #SCOTUS #MasterpieceCakeshop
+#> Sentiment: Negative
+#> 
+#> Statement: Can't believe this cake case went to #SCOTUS.
+#> Sentiment: Neutral
+#> 
+#> Statement: Court supports baker refusing gay couple's cake.
+#> Sentiment: Neutral
+#> 
+#> Statement: #SCOTUS legitimizes religious convictions over #humanrights. #LGBTQRights
+#> Sentiment: Negative
+#> 
+#> Statement: #ClarenceThomas is a waste on #scotus
+#> Sentiment: Negative
+#> 
+#> Statement: Justice Ginsburg hospitalized, says #SCOTUS spokesperson.
+#> Sentiment: Neutral
+#> 
+#> Statement: Trump will gloat if Court disappoints us tomorrow.
+#> Sentiment: Negative
+#> 
+#> Statement: SCOTUS: Manhattan DA can get Trump's tax returns.
+#> Sentiment: Positive
+#> 
+#> Statement: Supreme Court says Trump is not above the law.
+#> Sentiment: Positive
+#> 
+#> Statement: SCOTUS rulings send Trump financial records back to lower courts.
+#> Sentiment: Neutral
+#> 
+#> Statement: I am disappointed with this ruling.
+#> Sentiment:
 ```
 
 # Credit
 
-- [fewshot()](R/fewshot.R) is taken from
+- [fewshot()](R/fewshot.R) is taken directly from
   [{promptr}](https://github.com/joeornstein/promptr) originally written
   by [Joe Ornstein](https://github.com/joeornstein).

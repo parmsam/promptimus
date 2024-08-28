@@ -33,6 +33,7 @@ devtools::install_github("parmsam/promptimus")
 
 This is a basic example which shows you how to solve a common problem:
 
+### Role-Task-Format
 ```{r example-rtf}
 library(promptimus)
 
@@ -45,6 +46,7 @@ x <- rtf(
 strwrap(x, width = 80)
 ```
 
+## Chain of thought
 ```{r example-cot}
 # Use Chain of Thought framework to generate a prompt
 x <- chain_of_thought(
@@ -53,6 +55,7 @@ x <- chain_of_thought(
 strwrap(x, width = 80)
 ```
 
+### Fewshot
 ```{r example-fewshot}
 tweets <- tibble::tribble(
   ~text,         ~case,     ~label,
@@ -74,9 +77,9 @@ x <- fewshot(text = "I am disappointed with this ruling.",
               examples = tweets,
               template = "Statement: {text}\nSentiment: {label}",
         copy_to_clipboard = F)
-strwrap(x, width = 80)
+x
 ```
 
 # Credit
 
-- [fewshot()](R/fewshot.R) is taken from [{promptr}](https://github.com/joeornstein/promptr) originally written by [Joe Ornstein](https://github.com/joeornstein).
+- [fewshot()](R/fewshot.R) is taken directly from [{promptr}](https://github.com/joeornstein/promptr) originally written by [Joe Ornstein](https://github.com/joeornstein).
