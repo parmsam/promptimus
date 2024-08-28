@@ -1,3 +1,12 @@
+#' Chain prompts together
+#'
+#' @param prompts list of prompt strings to chain together
+#' @param model_function function that takes a prompt string and returns a response string from the LLM
+#'
+#' @return
+#' @export
+#'
+#' @examples
 chain_prompts <- function(prompts, model_function) {
   responses <- list()
 

@@ -1,11 +1,3 @@
-copy_with_message <- function(
-    x,
-    message = "Copied to clipboard"
-){
-  clipr::write_clip(x, allow_non_interactive = TRUE)
-  cli::cli_alert_success(text = "{message}")
-}
-
 #' Use Glue and Copy String
 #'
 #' @param ...
@@ -56,4 +48,20 @@ glue_copy <- function(
     copy_with_message(data, .copy_message)
   }
   return(data)
+}
+
+#' Copy to Clipboard with Cli Message
+#'
+#' @param x string to copy to clipboard
+#' @param message message to display
+#'
+#' @return
+#'
+#' @examples
+copy_with_message <- function(
+    x,
+    message = "Copied to clipboard"
+){
+  clipr::write_clip(x, allow_non_interactive = TRUE)
+  cli::cli_alert_success(text = "{message}")
 }

@@ -1,3 +1,17 @@
+#' Fewshot formatted prompt
+#'
+#' @param text
+#' @param instructions
+#' @param examples
+#' @param template string to format the examples
+#' @param prompt_template string to format the prompt
+#' @param separator string to separate examples
+#' @param copy_to_clipboard boolean to copy to clipboard
+#'
+#' @return
+#' @export
+#'
+#' @examples
 fewshot <- function(
     text,
     instructions = '',
