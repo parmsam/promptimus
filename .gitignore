@@ -7,3 +7,4 @@ app.R
 .DS_Store
 .quarto
 README_cache
+*_cache
