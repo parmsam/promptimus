@@ -42,7 +42,7 @@ strwrap(x, width = 80)
 #> [2] "to improve my work-life balance in table format."
 ```
 
-## Chain of thought
+### Chain of thought
 
 ``` r
 # Use Chain of Thought framework to generate a prompt

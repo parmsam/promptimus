@@ -46,7 +46,7 @@ x <- rtf(
 strwrap(x, width = 80)
 ```
 
-## Chain of thought
+### Chain of thought
 ```{r example-cot}
 # Use Chain of Thought framework to generate a prompt
 x <- chain_of_thought(
